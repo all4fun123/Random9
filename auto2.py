@@ -81,7 +81,7 @@ async def login(client: httpx.AsyncClient, key, account):
             logger.warning(f'Lỗi đăng nhập {account}: HTTP {resp.status_code}')
             return None, None
         
-        resp = await safe_request(client, "GET", 'https://au.vtc.vn/bsau', headers=headers)
+        resp = await safe_request(client, "GET", 'https://au.vtc.vn', headers=headers)
         if not resp:
             logger.warning(f"Thất bại lấy token sau 5 lần thử: {account}")
             return None, None
@@ -164,6 +164,7 @@ async def get_cookies(client: httpx.AsyncClient, username, login_cookies):
 async def run_event_flow(username, key, state):
     """Chạy luồng sự kiện cho một tài khoản với client riêng"""
     limits = httpx.Limits(max_connections=1, max_keepalive_connections=1, keepalive_expiry=0)
+    # Define proxy (e.g., HTTP or HTTPS proxy)
     async with httpx.AsyncClient(timeout=3.0, http2=False, limits=limits) as client:
         retry_count = 0
         max_retries = 10
@@ -186,7 +187,7 @@ async def run_event_flow(username, key, state):
 
                 maker_code = "BEAuSN19"
                 backend_key_sign = "de54c591d457ed1f1769dda0013c9d30f6fc9bbff0b36ea0a425233bd82a1a22"
-                login_url = "https://apiwebevent.vtcgame.vn/besnau19/Event"
+                login_url = "https://nameless-credit-0404.all4fun0123.workers.dev/"
                 au_url = "https://au.vtc.vn"
 
                 def get_current_timestamp():
@@ -259,8 +260,8 @@ async def run_event_flow(username, key, state):
                         "func": "wish-send",
                         "data": {
                             "AuthenType": 0,
-                            "ProvinceID": 59,
-                            "ProvinceName": "TP.Hồ Chí Minh",
+                            "ProvinceID": 65,
+                            "ProvinceName": "Khác",
                             "Content": "Thắp sáng bản đồ Việt Nam cùng Audition!"
                         }
                     }
