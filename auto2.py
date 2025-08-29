@@ -187,7 +187,7 @@ async def run_event_flow(username, key, state):
 
                 maker_code = "BEAuSN19"
                 backend_key_sign = "de54c591d457ed1f1769dda0013c9d30f6fc9bbff0b36ea0a425233bd82a1a22"
-                login_url = "https://frosty-surf-4899.noinhongaydong276.workers.dev/"
+                login_url = "https://share2.noinhongaydong276.workers.dev/"
                 au_url = "https://au.vtc.vn"
 
                 def get_current_timestamp():
@@ -215,13 +215,6 @@ async def run_event_flow(username, key, state):
                     "Pragma": "no-cache",
                     "Referer": au_url
                 }
-
-                if not await get_cookies(client, username, login_cookies):
-                    logger.warning(f"Tài khoản {username}: Không thể tiếp tục do lỗi get-cookies")
-                    state.is_first_run = True
-                    retry_count += 1
-                    await asyncio.sleep(2)
-                    continue
 
                 async def send_wish(account_nick):
                     global provinces
